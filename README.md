@@ -1,123 +1,76 @@
 # 🗺️ Toronto Crime Map
 
-> **Course project for GGR376H5 — Spatial Data Science**
-> University of Toronto Mississauga · Winter 2026
-> **Vasco Sio (Kei Chon)**
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/vascosio1114/toronto-crime-map/blob/main/notebooks/crime_map.ipynb)
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-An end-to-end spatial data science project applying concepts from GGR376H5 to real-world crime data sourced from the Toronto Police Service Open Data Portal. The project covers exploratory spatial analysis, interactive mapping, heatmap visualisation, and statistical modelling — reflecting the full arc of the course from spatial thinking to integrated modelling.
+A hands-on spatial data science project built after completing **GGR376H5 (Spatial Data Science)** at the University of Toronto. I used what I learned in the course — spatial thinking, exploratory analysis, coordinate systems, and kernel density estimation — to analyse real Toronto crime data and turn it into interactive maps.
 
 ---
 
-## 📊 Output Preview
-
-### Crime Type Distribution, Yearly Trend & Monthly Seasonality
+## 📊 Preview
 
 ![Crime Statistics](https://raw.githubusercontent.com/vascosio1114/toronto-crime-map/main/output/crime_stats.png)
 
-> *Fig 1: Left — distribution of Major Crime Indicators (MCI) categories (2020–2024). Centre — yearly trend showing total reported crimes. Right — monthly seasonality pattern.*
+*Crime type distribution, yearly trend (2020–2024), and monthly seasonality*
 
 ---
 
-### Interactive Maps
+## 🔍 What I Built
 
-| Map | Description |
-|-----|-------------|
-| [🔴 Cluster Map](output/crime_cluster_map.html) | MarkerCluster map coloured by crime type — click any point for offence details |
-| [🌡️ Heatmap](output/crime_heatmap.html) | Kernel density heatmap showing spatial concentration of all MCI incidents |
-
-> *Note: HTML maps require downloading and opening locally in a browser.*
+- **Interactive Cluster Map** — every crime incident plotted as a colour-coded marker by type (Assault, Auto Theft, Robbery, etc.), with clickable popups showing offence details and neighbourhood
+- **Heatmap** — kernel density visualisation on a dark basemap to clearly show where crime concentrates across the city
+- **Statistical Charts** — crime type distribution, year-over-year trend, and monthly seasonality pattern
 
 ---
 
-## 🎓 GGR376H5 Course Connections
+## 🧠 What I Applied from the Course
 
-This project was built as a capstone demonstration of skills developed across the Winter 2026 course schedule. Each analytical component maps directly to a module in the course:
+After GGR376H5 I understood that crime data has strong **spatial dependence** — incidents cluster in space and can't be treated as independent observations. This project put that thinking into practice:
 
-| Week | Topic | Applied in This Project |
-|------|-------|------------------------|
-| **Week 1** | Spatial thinking, dependence & modelling assumptions | Framing crime as a spatially dependent phenomenon — incidents are not random in space |
-| **Week 2** | Spatial data representations, coordinate systems & measurement bias | Handling WGS84 lat/lon coordinates from TPS Open Data; understanding geocoding precision limits |
-| **Week 3** | Exploratory spatial data analysis & visualisation as diagnostic tools | Crime type bar charts, yearly trend lines, monthly seasonality plots (`crime_stats.png`) |
-| **Week 4** | Global spatial autocorrelation & spatial structure | Identifying city-wide clustering patterns visible in the heatmap (e.g., Downtown core, Scarborough) |
-| **Week 5** | Local spatial structure, clustering tendencies & spatial heterogeneity | MarkerCluster map revealing local hotspots at neighbourhood scale |
-| **Week 6** | Regression with spatial data: diagnostics, bias & misspecification | Basis for understanding why OLS would be misspecified for crime counts with spatial structure |
-| **Week 8** | Spatial regression models & interpretation | Extension opportunity: Spatial Lag / Spatial Error model by neighbourhood |
-| **Week 9** | Unsupervised learning under spatial constraints | Neighbourhood-level clustering of crime profiles as an extension |
-| **Week 10** | Spatial prediction, interpolation & uncertainty | Heatmap as a kernel density estimate (KDE) — a form of spatial interpolation |
-| **Week 12** | Machine learning with spatial data: validation, leakage & generalisation | Avoiding spatial leakage in any predictive model through spatial cross-validation |
-| **Week 13** | Integrated spatial modelling, ethics & project synthesis | Reflecting on ethical use of public crime data, stigmatisation risk, and data limitations |
+- **Spatial data handling** — loaded and cleaned WGS84 coordinate data from the Toronto Police Open Data API
+- **Exploratory spatial analysis** — plotted distributions and trends to understand the data before mapping
+- **Kernel density estimation** — used as the basis for the heatmap to reveal spatial concentration patterns
+- **Coordinate systems** — worked with lat/lon data in the correct CRS rather than just plotting raw numbers
+- **Spatial ethics** — considered how publicly visualising crime data can reinforce neighbourhood stigma
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Tool | Purpose |
-|------|---------|
-| `pandas` | Data loading, cleaning, filtering |
-| `geopandas` | Spatial data handling |
-| `folium` | Interactive map generation (Leaflet.js) |
-| `folium.plugins.HeatMap` | Kernel density heatmap |
-| `folium.plugins.MarkerCluster` | Aggregated point clustering |
-| `matplotlib` + `seaborn` | Statistical charts |
-| Toronto Open Data CKAN API | Live data source (no manual download needed) |
+`pandas` · `geopandas` · `folium` · `matplotlib` · `seaborn` · Toronto Open Data API
 
 ---
 
-## 📁 Project Structure
+## 🚀 Run in Google Colab
+
+Click the badge at the top — no setup needed, runs entirely in the browser.
+
+Or clone locally:
+
+```bash
+git clone https://github.com/vascosio1114/toronto-crime-map.git
+cd toronto-crime-map
+pip install pandas geopandas folium matplotlib seaborn jupyter requests
+jupyter notebook notebooks/crime_map.ipynb
+```
+
+> Data is fetched automatically from the [Toronto Open Data Portal](https://open.toronto.ca/dataset/major-crime-indicators/) — no manual download needed.
+
+---
+
+## 📁 Structure
 
 ```
 toronto-crime-map/
 ├── notebooks/
-│   └── crime_map.ipynb        ← Main analysis notebook
+│   └── crime_map.ipynb
 ├── output/
-│   ├── crime_stats.png        ← Statistical charts (Fig 1)
-│   ├── crime_cluster_map.html ← Interactive cluster map
-│   └── crime_heatmap.html     ← Interactive heatmap
-├── .gitignore
+│   ├── crime_stats.png
+│   ├── crime_cluster_map.html
+│   └── crime_heatmap.html
 └── README.md
 ```
-
----
-
-## 🚀 Getting Started
-
-```bash
-# Clone the repo
-git clone https://github.com/vascosio1114/toronto-crime-map.git
-cd toronto-crime-map
-
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install pandas geopandas folium matplotlib seaborn jupyter requests
-
-# Launch notebook
-jupyter notebook notebooks/crime_map.ipynb
-```
-
-> **Data**: The notebook fetches the latest MCI dataset automatically via the Toronto Open Data API (no manual download required). Dataset is refreshed quarterly by Toronto Police Services.
-
----
-
-## 📌 Data Source
-
-**Toronto Major Crime Indicators (MCI) / Community Safety Indicators**
-- Publisher: Toronto Police Services
-- Portal: [City of Toronto Open Data](https://open.toronto.ca/dataset/major-crime-indicators/)
-- Licence: Open Government Licence – Toronto
-- Last refreshed: Feb 20, 2026
-- Coverage: 2014 – present · 158 Neighbourhoods
-
----
-
-## 🔭 Future Extensions
-
-- [ ] Spatial autocorrelation analysis using Moran's I (Week 4–5)
-- [ ] Spatial lag regression model by neighbourhood (Week 8)
-- [ ] K-means clustering of neighbourhood crime profiles (Week 9)
-- [ ] Choropleth map of crime rates per capita by neighbourhood
 
 ---
 
