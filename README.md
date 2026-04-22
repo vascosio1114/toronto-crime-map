@@ -12,7 +12,7 @@ An end-to-end spatial data science project applying concepts from GGR376H5 to re
 
 ### Crime Type Distribution, Yearly Trend & Monthly Seasonality
 
-![Crime Statistics](output/crime_stats.png)
+![Crime Statistics](https://raw.githubusercontent.com/vascosio1114/toronto-crime-map/main/output/crime_stats.png)
 
 > *Fig 1: Left — distribution of Major Crime Indicators (MCI) categories (2020–2024). Centre — yearly trend showing total reported crimes. Right — monthly seasonality pattern.*
 
@@ -68,11 +68,11 @@ This project was built as a capstone demonstration of skills developed across th
 ```
 toronto-crime-map/
 ├── notebooks/
-│   └── crime_map.ipynb       ← Main analysis notebook
+│   └── crime_map.ipynb        ← Main analysis notebook
 ├── output/
-│   ├── crime_stats.png       ← Statistical charts (Fig 1)
+│   ├── crime_stats.png        ← Statistical charts (Fig 1)
 │   ├── crime_cluster_map.html ← Interactive cluster map
-│   └── crime_heatmap.html    ← Interactive heatmap
+│   └── crime_heatmap.html     ← Interactive heatmap
 ├── .gitignore
 └── README.md
 ```
